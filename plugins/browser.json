@@ -37,7 +37,7 @@
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-barcodescanner": {
+    "phonegap-plugin-barcodescanner": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     }
   },
