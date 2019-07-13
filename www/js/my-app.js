@@ -123,10 +123,10 @@ routes: [
 				          alert("Scanning failed: " + error);
 				      },
 				      {
-				          preferFrontCamera : true, // iOS and Android
+				          preferFrontCamera : false, // iOS and Android
 				          showFlipCameraButton : true, // iOS and Android
 				          showTorchButton : true, // iOS and Android
-				          torchOn: true, // Android, launch with the torch switched on (if available)
+				          torchOn: false, // Android, launch with the torch switched on (if available)
 				          saveHistory: true, // Android, save scan history (default false)
 				          prompt : "Place a barcode inside the scan area", // Android
 				          resultDisplayDuration: 10, // Android, display scanned text for X ms. 0 suppresses it entirely, default 110
@@ -137,12 +137,19 @@ routes: [
 				      }
 				   );
 				});
+				window.addEventListener("error", handleError,true);
 			},
 		},
 	},
 ]});
 var mainView = app.views.create('.view-main',{ url: '/home/'});
-
+function handleError(evt){
+ if(evt.message){
+  alert("error:"+ evt.message + " line :"+ evt.lineno+" file "+ evt.filename);
+ }else{
+  alert("error:"+ evt.type + " element :"+ (evt.srcElement || evt.target));
+ }
+}
 function onBackKeyDown() {
 	if(app.views.main.history.length == 1 || app.views.main.router.url == '/home/')
 	{
